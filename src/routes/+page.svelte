@@ -1,16 +1,37 @@
+<script lang="ts">
+    import { goto } from "$app/navigation";
+    import { onMount } from "svelte";
+
+    onMount(() => {
+        if (localStorage.getItem("USERID")) {
+            goto("/game");
+        }
+    });
+</script>
+
 <div class="container">
     <div class="signin">
         <h1 class="title">Title</h1>
-        <input type="text" name="id" placeholder="CliendID" />
-        <button class="login">Log In</button>
+        <input type="text" name="id" placeholder="UserID" />
+        <button class="blue-button">Log In</button>
         <a class="register" href="/register">Register</a>
+        <p class="error">|error|</p>
     </div>
 </div>
 
 <style>
-    h1 {
+    h1,
+    p {
         margin: 0;
     }
+    .error {
+        position: absolute;
+        bottom: 2rem;
+        color: red;
+        font-family: monospace;
+        font-size: 1rem;
+    }
+
     .container {
         display: flex;
         justify-content: center;
@@ -18,6 +39,7 @@
         height: 100vh;
     }
     .signin {
+        position: relative;
         width: max(20rem, 50vw);
         height: max(20rem, 50vh);
         background-color: var(--bl1);
@@ -43,24 +65,5 @@
         width: 15rem;
         padding-block: 0.25rem;
         padding-inline: 0.5rem;
-    }
-
-    .login {
-        appearance: none;
-        color: var(--accent-color);
-        background-color: var(--b7);
-        border: none;
-        height: 2.5rem;
-        width: 5rem;
-        border: 0.1rem solid var(--b9);
-        border-radius: 0.25rem;
-
-        font-size: 1rem;
-    }
-    .login:hover {
-        background-color: var(--b9);
-    }
-    .login:active {
-        background-color: var(--b8);
     }
 </style>

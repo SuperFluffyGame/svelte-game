@@ -41,3 +41,23 @@ a {
 a:hover {
     color: var(--accent-color-hover);
 }
+
+.blue-button {
+    appearance: none;
+    color: var(--accent-color);
+    background-color: var(--b7);
+    border: none;
+    height: 2.5rem;
+    width: 5rem;
+    border: 0.1rem solid var(--b9);
+    border-radius: 0.25rem;
+
+    font-size: 1rem;
+}
+
+.blue-button:hover {
+    background-color: var(--b9);
+}
+.blue-button:active {
+    background-color: var(--b8);
+}

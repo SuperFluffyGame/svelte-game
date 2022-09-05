@@ -2,13 +2,20 @@
     import "../../app.css";
     import accountSvg from "$lib/assets/account.svg";
     import { page } from "$app/stores";
+    import { onMount } from "svelte";
+    import { goto } from "$app/navigation";
 
+    let name = "Loading...";
     let pageName = $page.url.pathname;
     if (pageName.startsWith("/")) {
         pageName = pageName.slice(1);
     }
-
-    let name = "Name";
+    onMount(() => {
+        if (!localStorage.getItem("USERID")) {
+            goto("/");
+        }
+        name = localStorage.getItem("USERNAME") ?? "Something went wrong";
+    });
 </script>
 
 <div class="container">
@@ -16,7 +23,7 @@
         <h1 class="title">Title</h1>
         <div class="account">
             <p class="name">{name}</p>
-            <a href="/account">
+            <a href="/game/account">
                 <img src={accountSvg} alt="account icon" class="account-icon" />
             </a>
         </div>

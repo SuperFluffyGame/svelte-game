@@ -19,6 +19,7 @@
                 statusMsg = registerStatus.statusMsg;
             }
             localStorage.setItem("USERID", registerStatus.userid!);
+            localStorage.setItem("USERNAME", username);
 
             goto("/register/showid");
         }

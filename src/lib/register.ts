@@ -89,3 +89,27 @@ export const usernameStatus = (u: string): UsernameStatus => {
         };
     }
 };
+
+export interface LoginStatus {
+    error: boolean;
+    username: string | null;
+    statusMsg: string;
+}
+
+export const login = (id: string | null): LoginStatus => {
+    const username = getUsernames()[id ?? ""];
+
+    if (!id || !username) {
+        return {
+            error: true,
+            username: null,
+            statusMsg: "Invalid UserID.",
+        };
+    }
+
+    return {
+        error: false,
+        username,
+        statusMsg: "Successfully logged in.",
+    };
+};

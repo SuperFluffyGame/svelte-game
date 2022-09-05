@@ -1,21 +1,44 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
+    import type { LoginStatus } from "$lib/register";
     import { onMount } from "svelte";
+
+    let userid = "";
+
+    let error = false;
+    let statusMsg = "";
 
     onMount(() => {
         if (localStorage.getItem("USERID")) {
             goto("/game");
         }
     });
+
+    const login = async () => {
+        const res = await fetch(`/api/login?id=${userid}`);
+        const status: LoginStatus = await res.json();
+
+        if (status.error) {
+            error = true;
+            statusMsg = status.statusMsg;
+            return;
+        }
+
+        localStorage.setItem("USERNAME", status.username!);
+        localStorage.setItem("USERID", userid);
+        goto("/game");
+    };
 </script>
 
 <div class="container">
     <div class="signin">
         <h1 class="title">Title</h1>
-        <input type="text" name="id" placeholder="UserID" />
-        <button class="blue-button">Log In</button>
+        <input type="text" name="id" placeholder="UserID" bind:value={userid} />
+        <button class="blue-button" on:click={login}>Log In</button>
         <a class="register" href="/register">Register</a>
-        <p class="error">|error|</p>
+        <p class="feedback" class:red={error} class:lime={!error}>
+            {statusMsg}
+        </p>
     </div>
 </div>
 
@@ -24,12 +47,19 @@
     p {
         margin: 0;
     }
-    .error {
-        position: absolute;
-        bottom: 2rem;
+    .lime {
+        color: limegreen;
+    }
+    .red {
         color: red;
+    }
+
+    .feedback {
+        position: absolute;
+        bottom: 1rem;
         font-family: monospace;
         font-size: 1rem;
+        text-align: center;
     }
 
     .container {

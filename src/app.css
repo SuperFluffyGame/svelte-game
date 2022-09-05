@@ -33,3 +33,11 @@ body {
     font-family: var(--main-font);
     color: var(--accent-color);
 }
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+a:hover {
+    color: var(--accent-color-hover);
+}

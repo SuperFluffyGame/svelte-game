@@ -62,14 +62,6 @@
         background-color: var(--bl4);
     }
 
-    a {
-        color: var(--accent-color);
-        text-decoration: none;
-    }
-    a:hover {
-        color: var(--accent-color-hover);
-    }
-
     .page-tab-container {
         height: 2rem;
         border-bottom: 0.2rem solid var(--b9);

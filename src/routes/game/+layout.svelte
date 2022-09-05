@@ -30,31 +30,31 @@
     </div>
     <div class="page-tab-container">
         <div class="page-tab" class:selected={pageName == "character"}>
-            <a href="/character">CHARACTER</a>
+            <a href="/game/character">CHARACTER</a>
         </div>
         <div class="page-tab" class:selected={pageName == "inventory"}>
-            <a href="/inventory">INVENTORY</a>
+            <a href="/game/inventory">INVENTORY</a>
         </div>
         <div class="page-tab" class:selected={pageName == "gathering"}>
-            <a href="/gathering">GATHERING</a>
+            <a href="/game/gathering">GATHERING</a>
         </div>
         <div class="page-tab" class:selected={pageName == "combat"}>
-            <a href="/combat">COMBAT</a>
+            <a href="/game/combat">COMBAT</a>
         </div>
         <div class="page-tab" class:selected={pageName == "pvp"}>
-            <a href="/pvp">PvP</a>
+            <a href="/game/pvp">PvP</a>
         </div>
         <div class="page-tab" class:selected={pageName == "dungeons"}>
-            <a href="/dungeons">DUNGEONS</a>
+            <a href="/game/dungeons">DUNGEONS</a>
         </div>
         <div class="page-tab" class:selected={pageName == "trading"}>
-            <a href="/trading">TRADING</a>
+            <a href="/game/trading">TRADING</a>
         </div>
         <div class="page-tab" class:selected={pageName == "factions"}>
-            <a href="/factions">FACTIONS</a>
+            <a href="/game/factions">FACTIONS</a>
         </div>
         <div class="page-tab" class:selected={pageName == "leaderboards"}>
-            <a href="/leaderboards"> LEADERBOARDS</a>
+            <a href="/game/leaderboards"> LEADERBOARDS</a>
         </div>
     </div>
 </div>

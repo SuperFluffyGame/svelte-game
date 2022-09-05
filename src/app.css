@@ -1,0 +1,35 @@
+:root {
+    --main-font: "Segoe UI";
+    --primary-color: rgb(20, 20, 25);
+    --secondary-color: rgb(26, 26, 32);
+
+    --accent-color: rgb(224, 224, 224);
+    --accent-color-hover: rgb(187, 187, 187);
+
+    --b0: #00111c;
+    --b1: #001523;
+    --b2: #001a2c;
+    --b3: #002137;
+    --b4: #00253e;
+    --b5: #002945;
+    --b6: #002e4e;
+    --b7: #003356;
+    --b8: #003a61;
+    --b9: #00406c;
+
+    --bl0: #060810;
+    --bl1: #121416;
+    --bl2: #161a1e;
+    --bl3: #1b2024;
+    --bl4: #22262a;
+    --bl5: #303234;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background-color: var(--bl3);
+    font-family: var(--main-font);
+    color: var(--accent-color);
+}

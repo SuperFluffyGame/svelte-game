@@ -1,6 +1,7 @@
 import fs from "fs";
-export const dataPath =
-    "C:/Users/super/OneDrive/Documents/coding/JS/svelte-game/data";
+import { root } from "../../path";
+export const dataPath = root + "/data";
+// "C:/Users/super/OneDrive/Documents/coding/JS/svelte-game/data";
 export const usernamePath = dataPath + "/usernames.json";
 
 export const getUsernames = () => {

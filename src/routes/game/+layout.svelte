@@ -1,14 +1,12 @@
-<script>
+<script lang="ts">
     import accountSvg from "$lib/assets/account.svg";
     import { page } from "$app/stores";
     import { onMount } from "svelte";
     import { goto } from "$app/navigation";
 
+    $: pageName = $page.url.pathname.slice(6);
+
     let name = "Loading...";
-    let pageName = $page.url.pathname;
-    if (pageName.startsWith("/game")) {
-        pageName = pageName.slice(6);
-    }
     onMount(() => {
         if (!localStorage.getItem("USERID")) {
             goto("/");
@@ -57,7 +55,6 @@
         </div>
     </div>
 </div>
-
 <slot />
 
 <style>

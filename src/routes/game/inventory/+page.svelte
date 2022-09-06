@@ -9,7 +9,7 @@
 </script>
 
 <div class="container">
-    <Item name="Wood" power={1} count={1} rating={1} cost={1} />
+    <Item name="Wood" power={1} count={1} rating={4} cost={1} />
 </div>
 
 <style>

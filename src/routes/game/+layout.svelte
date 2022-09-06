@@ -1,5 +1,4 @@
 <script>
-    import "../../app.css";
     import accountSvg from "$lib/assets/account.svg";
     import { page } from "$app/stores";
     import { onMount } from "svelte";
@@ -72,7 +71,7 @@
     }
 
     .page-tab-container {
-        height: 2rem;
+        height: 2.25rem;
         border-bottom: 0.2rem solid var(--b9);
         background-color: var(--bl2);
         display: flex;
@@ -81,14 +80,21 @@
         scrollbar-width: thin;
         scrollbar-color: var(--bl5) transparent;
     }
+    .page-tab-container::-webkit-scrollbar {
+        height: 0.4rem;
+        width: 1rem;
+        background-color: var(--bl2);
+    }
+    .page-tab-container::-webkit-scrollbar-thumb {
+        background-color: var(--bl5);
+    }
 
     .page-tab {
         display: flex;
         align-items: center;
         justify-content: center;
 
-        font-family: monospace;
-        font-size: 1.25rem;
+        font-size: 1.15rem;
         padding-block: 0.25rem;
         padding-inline: 1.5rem;
         border-left: 0.2rem solid var(--b5);

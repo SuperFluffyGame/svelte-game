@@ -1,5 +1,5 @@
 :root {
-    --main-font: "Segoe UI";
+    --main-font: arial;
     --primary-color: rgb(20, 20, 25);
     --secondary-color: rgb(26, 26, 32);
 
@@ -31,11 +31,13 @@ body {
     min-height: 100vh;
     background-color: var(--bl3);
     font-family: var(--main-font);
+
     color: var(--accent-color);
 
     display: flex;
     flex-direction: column;
 }
+
 
 a {
     color: var(--accent-color);
@@ -49,7 +51,6 @@ a:hover {
     appearance: none;
     color: var(--accent-color);
     background-color: var(--b7);
-    border: none;
     height: 2.5rem;
     width: 5rem;
     border: 0.1rem solid var(--b9);

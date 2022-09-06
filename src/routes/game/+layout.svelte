@@ -7,8 +7,8 @@
 
     let name = "Loading...";
     let pageName = $page.url.pathname;
-    if (pageName.startsWith("/")) {
-        pageName = pageName.slice(1);
+    if (pageName.startsWith("/game")) {
+        pageName = pageName.slice(6);
     }
     onMount(() => {
         if (!localStorage.getItem("USERID")) {
@@ -64,6 +64,8 @@
 <style>
     .container {
         position: sticky;
+        top: 0;
+        left: 0;
     }
     .selected {
         background-color: var(--bl4);

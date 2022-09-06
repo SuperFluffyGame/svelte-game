@@ -12,7 +12,9 @@
         <h2 class="name">{name}</h2>
         <hr class="name-divider" />
     </div>
-    <div class="stats">stats</div>
+    <div class="right">
+        <div class="bar" />
+    </div>
 </div>
 
 <style>
@@ -31,9 +33,10 @@
     }
 
     .container {
+        flex: 1;
         display: flex;
-        height: 100%;
         align-items: stretch;
+        min-height: 30rem;
     }
 
     .left {
@@ -41,5 +44,15 @@
         border-radius: 1rem;
         background-color: var(--bl5);
         width: 20rem;
+    }
+
+    .right {
+        display: flex;
+    }
+
+    .bar {
+        background-color: var(--bl5);
+        flex-grow: 1;
+        width: 0.1rem;
     }
 </style>

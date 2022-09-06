@@ -8,7 +8,7 @@ export const getUsernames = () => {
 };
 
 export const setUsernames = (names: object) => {
-    fs.writeFileSync(usernamePath, JSON.stringify(names));
+    fs.writeFileSync(usernamePath, JSON.stringify(names, null, 4));
 };
 
 export const setUsername = (id: string, name: String) => {

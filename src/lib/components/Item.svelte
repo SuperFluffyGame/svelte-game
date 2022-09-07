@@ -1,7 +1,7 @@
 <script lang="ts">
     import { onMount } from "svelte";
-    import type { Item } from "./data";
-    import { numberToString } from "./util";
+    import type { Item } from "../data";
+    import { numberToString } from "../util";
     import Stars from "./Stars.svelte";
 
     export let name: string;
@@ -62,7 +62,7 @@
         margin: 1rem;
         border-radius: 0.5rem;
         min-height: 4rem;
-        width: 12rem;
+        width: 13rem;
         padding: 0.5rem;
 
         font-family: monospace;

@@ -6,5 +6,5 @@
       <stop offset="1" style="stop-color: rgba(165, 165, 165, 1)"/>
     </linearGradient>
   </defs>
-  <path d="M 50 0 L 62.361 37.39 L 100 38.197 L 70 62.112 L 80.902 100.001 L 50 77.391 L 19.098 100.001 L 30 62.112 L 0 38.197 L 37.639 37.39 Z" style="stroke: rgb(0, 0, 0); paint-order: fill; fill-rule: nonzero; fill: url(#gradient-0); stroke-width: 3px; stroke-miterlimit: 1; stroke-linejoin: round; stroke-dashoffset: 1px;" bx:shape="star 50 55.279 52.573 55.279 0.4 5 1@fedf1880"/>
+  <path d="M 50 0 L 62.361 37.39 L 100 38.197 L 70 62.112 L 80.902 100.001 L 50 77.391 L 19.098 100.001 L 30 62.112 L 0 38.197 L 37.639 37.39 Z" style="stroke: rgb(0, 0, 0); paint-order: fill; fill-rule: nonzero; fill: url(#gradient-0); stroke-width: 0px; stroke-miterlimit: 1; stroke-linejoin: round; stroke-dashoffset: 1px;" bx:shape="star 50 55.279 52.573 55.279 0.4 5 1@fedf1880"/>
 </svg>

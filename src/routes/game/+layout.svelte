@@ -3,6 +3,7 @@
     import { page } from "$app/stores";
     import { onMount } from "svelte";
     import { goto } from "$app/navigation";
+    import { title } from "$lib/util";
 
     $: pageName = $page.url.pathname.slice(6);
 
@@ -11,13 +12,18 @@
         if (!localStorage.getItem("USERID")) {
             goto("/");
         }
-        name = localStorage.getItem("USERNAME") ?? "Something went wrong";
+        name =
+            localStorage.getItem("USERNAME")! ??
+            void (function () {
+                localStorage.removeItem("USERID");
+                goto("/");
+            })();
     });
 </script>
 
 <div class="container">
     <div class="topbar">
-        <h1 class="title">Title</h1>
+        <h1 class="title">{title}</h1>
         <div class="account">
             <p class="name">{name}</p>
             <a href="/game/account">

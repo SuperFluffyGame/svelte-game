@@ -2,6 +2,7 @@
     import type { UsernameStatus, RegisterStatus } from "$lib/register";
     import { goto } from "$app/navigation";
     import { onMount } from "svelte";
+    import { title } from "$lib/util";
 
     let error = true;
     let statusMsg = "";
@@ -42,7 +43,7 @@
 
 <div class="container">
     <div class="signin">
-        <h1 class="title">Title</h1>
+        <h1 class="title">{title}</h1>
         <input
             type="text"
             name="id"

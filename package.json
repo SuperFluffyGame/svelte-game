@@ -11,6 +11,7 @@
     },
     "devDependencies": {
         "@sveltejs/adapter-auto": "next",
+        "@sveltejs/adapter-node": "^1.0.0-next.88",
         "@sveltejs/kit": "next",
         "@types/cookie": "^0.5.1",
         "cookie": "^0.5.0",
@@ -19,8 +20,10 @@
         "svelte-preprocess": "^4.10.6",
         "tslib": "^2.3.1",
         "typescript": "^4.7.4",
-        "vite": "^3.1.0-beta.1",
-        "@sveltejs/adapter-node": "^1.0.0-next.88"
+        "vite": "^3.1.0-beta.1"
     },
-    "type": "module"
+    "type": "module",
+    "dependencies": {
+        "@supabase/supabase-js": "^2.0.0-rc.10"
+    }
 }

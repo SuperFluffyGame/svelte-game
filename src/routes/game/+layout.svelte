@@ -1,23 +1,26 @@
 <script lang="ts">
+    import "../../app.css";
     import accountSvg from "$lib/assets/account.svg";
     import { page } from "$app/stores";
     import { onMount } from "svelte";
+    import { title } from "$lib/texts";
+    import { supabase } from "$lib/supabase";
     import { goto } from "$app/navigation";
-    import { title } from "$lib/util";
+    import { username } from "$lib/stores";
 
     $: pageName = $page.url.pathname.slice(6);
 
-    let name = "Loading...";
-    onMount(() => {
-        if (!localStorage.getItem("USERID")) {
-            goto("/");
+    onMount(async () => {
+        const userRes = await supabase.auth.getUser();
+        if (userRes.error) {
+            goto("/auth/signin");
+            return;
         }
-        name =
-            localStorage.getItem("USERNAME")! ??
-            void (function () {
-                localStorage.removeItem("USERID");
-                goto("/");
-            })();
+        const usernameSqlRes = await supabase
+            .from("users")
+            .select("username")
+            .single();
+        username.set(usernameSqlRes.data?.username ?? "Error");
     });
 </script>
 
@@ -25,7 +28,7 @@
     <div class="topbar">
         <h1 class="title">{title}</h1>
         <div class="account">
-            <p class="name">{name}</p>
+            <p class="name">{$username}</p>
             <a href="/game/account">
                 <img src={accountSvg} alt="account icon" class="account-icon" />
             </a>

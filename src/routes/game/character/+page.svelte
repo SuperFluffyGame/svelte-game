@@ -1,15 +1,11 @@
 <script lang="ts">
     import { onMount } from "svelte";
-
-    let name = "Loading...";
-    onMount(() => {
-        name = localStorage.getItem("USERNAME") ?? "Something went wrong";
-    });
+    import { username } from "$lib/stores";
 </script>
 
 <div class="container">
     <div class="left">
-        <h2 class="name">{name}</h2>
+        <h2 class="name">{$username}</h2>
         <hr class="name-divider" />
     </div>
     <div class="right">

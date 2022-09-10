@@ -25,6 +25,8 @@
     --bl5: #303234;
     --bl6: #393b3d;
     --bl7: #444648;
+
+    scrollbar-width: thin;
 }
 
 body {
@@ -40,7 +42,6 @@ body {
     flex-direction: column;
 }
 
-
 a {
     color: var(--accent-color);
     text-decoration: none;
@@ -54,16 +55,42 @@ a:hover {
     color: var(--accent-color);
     background-color: var(--b7);
     height: 2.5rem;
-    width: 5rem;
+    min-width: 5rem;
     border: 0.1rem solid var(--b9);
     border-radius: 0.25rem;
-
     font-size: 1rem;
-}
 
+    transition: background-color 50ms linear;
+}
 .blue-button:hover {
     background-color: var(--b9);
 }
 .blue-button:active {
     background-color: var(--b8);
+}
+
+.text-button {
+    appearance: none;
+    color: var(--accent-color);
+    background-color: transparent;
+    min-width: 5rem;
+    border: none;
+    font-size: 1rem;
+    height: 2rem;
+    border-radius: 0.25rem;
+
+    transition: background-color 50ms linear;
+}
+.text-button:hover {
+    background-color: var(--bl4);
+}
+
+a {
+    min-width: 5rem;
+    text-align: center;
+    border-radius: 0.25rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

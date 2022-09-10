@@ -1,10 +1,13 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
+    import { supabase } from "$lib/supabase";
 
-    const logout = () => {
-        localStorage.removeItem("USERID");
-        localStorage.removeItem("USERNAME");
-        goto("/");
+    const logout = async () => {
+        const signoutRes = await supabase.auth.signOut();
+        if (signoutRes.error) {
+            console.error("something went wrong when signing out");
+        }
+        goto("/auth/signin");
     };
 </script>
 

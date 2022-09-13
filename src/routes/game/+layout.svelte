@@ -3,7 +3,7 @@
     import accountSvg from "$lib/assets/account.svg";
     import { page } from "$app/stores";
     import { onMount } from "svelte";
-    import { title } from "$lib/texts";
+    import * as Texts from "$lib/texts";
     import { supabase } from "$lib/supabase";
     import { goto } from "$app/navigation";
     import { username } from "$lib/stores";
@@ -26,7 +26,7 @@
 
 <div class="container">
     <div class="topbar">
-        <h1 class="title">{title}</h1>
+        <h1 class="title">{Texts.Title}</h1>
         <div class="account">
             <p class="name">{$username}</p>
             <a href="/game/account">

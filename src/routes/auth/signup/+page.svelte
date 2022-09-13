@@ -1,51 +1,23 @@
 <script lang="ts">
-    import { EmailInUse, Registered, title } from "$lib/texts";
-    import { supabase } from "$lib/supabase";
-    import { goto } from "$app/navigation";
+    import * as Texts from "$lib/texts";
+    import { signup } from "$lib/auth";
 
     let error = false;
-    let feedback: null | string = null;
+    let feedback: string | null = null;
     let email = "";
     let password = "";
     let username = "";
     let showPassword = false;
 
-    const signup = async () => {
-        const emailConnectedToUser = await supabase
-            .from("users")
-            .select("email")
-            .eq("email", email);
-
-        if (emailConnectedToUser.data?.length ?? 0 > 0) {
-            console.error("email already in use!");
-            error = true;
-            feedback = EmailInUse;
-            return;
-        }
-        const res = await supabase.auth.signUp({
-            email,
-            password,
-        });
+    const _signup = async () => {
+        const res = await signup(email, password, username);
         if (res.error) {
-            console.error(res);
-            return;
-        }
-        await supabase.from("users").insert([
-            {
-                email,
-                username,
-            },
-        ]);
-        const loginRes = await supabase.auth.signInWithPassword({
-            email,
-            password,
-        });
-        if (loginRes.error) {
-            console.error(loginRes);
+            error = true;
+            feedback = res.error;
             return;
         }
         error = false;
-        feedback = Registered;
+        feedback = Texts.SuccessfulSignup;
     };
 
     const handlePasswordInput = (e: Event) => {
@@ -53,8 +25,8 @@
     };
 </script>
 
-<form class="signin" on:submit|preventDefault={signup}>
-    <h1 class="title">{title}</h1>
+<form class="signin" on:submit|preventDefault={_signup}>
+    <h1 class="title">{Texts.Title}</h1>
     <input
         class="text-input"
         type="username"
@@ -89,8 +61,8 @@
         >{showPassword ? "Hide" : "Show"} Password</button
     >
     <div class="continue-buttons">
-        <button type="submit" class="blue-button">Sign Up</button>
-        <a href="/auth/signin">Sign In</a>
+        <button class="blue-button" type="submit">Sign Up</button>
+        <a href="/auth/signin" class="text-button">Sign In</a>
     </div>
     <!-- <a class="sign" href="/register">Register</a> -->
     <p class="feedback" class:red={error} class:lime={!error}>

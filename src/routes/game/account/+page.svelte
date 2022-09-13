@@ -12,7 +12,7 @@
 </script>
 
 <div class="container">
-    <button on:click={logout} class="blue-button">Logout</button>
+    <button class="blue-button" on:click={logout}>Logout</button>
 </div>
 
 <style>

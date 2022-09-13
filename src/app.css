@@ -27,6 +27,7 @@
     --bl7: #444648;
 
     scrollbar-width: thin;
+    font-size: 1.1vw;
 }
 
 body {
@@ -42,13 +43,51 @@ body {
     flex-direction: column;
 }
 
+button {
+    cursor: pointer;
+}
+
 a {
+    appearance: none;
     color: var(--accent-color);
     text-decoration: none;
+    transition: color 75ms linear;
 }
-a:hover {
+a:hover:not(.text-button) {
     color: var(--accent-color-hover);
 }
+
+
+.text-button {
+    appearance: none;
+    color: var(--accent-color);
+    background-color: transparent;
+    min-width: 5rem;
+    border: none;
+    font-size: 1rem;
+    height: 2rem;
+    border-radius: 0.25rem;
+
+    transition: background-color 75ms linear;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.text-button:hover {
+    background-color: var(--bl4);
+}
+
+/* a {
+    min-width: 5rem;
+    text-align: center;
+    border-radius: 0.25rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} */
+
 
 .blue-button {
     appearance: none;
@@ -67,30 +106,4 @@ a:hover {
 }
 .blue-button:active {
     background-color: var(--b8);
-}
-
-.text-button {
-    appearance: none;
-    color: var(--accent-color);
-    background-color: transparent;
-    min-width: 5rem;
-    border: none;
-    font-size: 1rem;
-    height: 2rem;
-    border-radius: 0.25rem;
-
-    transition: background-color 50ms linear;
-}
-.text-button:hover {
-    background-color: var(--bl4);
-}
-
-a {
-    min-width: 5rem;
-    text-align: center;
-    border-radius: 0.25rem;
-    height: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }

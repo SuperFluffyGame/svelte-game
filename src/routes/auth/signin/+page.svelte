@@ -1,7 +1,7 @@
 <script lang="ts">
-    import { EmailInUse, Registered, title } from "$lib/texts";
-    import { supabase } from "$lib/supabase";
+    import * as Texts from "$lib/texts";
     import { goto } from "$app/navigation";
+    import { signin } from "$lib/auth";
 
     let error = false;
     let feedback: null | string = null;
@@ -9,16 +9,13 @@
     let password = "";
     let showPassword = false;
 
-    const signin = async () => {
-        const res = await supabase.auth.signInWithPassword({
-            email,
-            password,
-        });
+    const _signin = async () => {
+        const res = await signin(email, password);
         if (res.error) {
-            console.error(res);
+            error = true;
+            feedback = res.error;
             return;
         }
-
         goto("/game");
     };
 
@@ -27,8 +24,8 @@
     };
 </script>
 
-<form class="signin" on:submit|preventDefault={signin}>
-    <h1 class="title">{title}</h1>
+<form class="signin" on:submit|preventDefault={_signin}>
+    <h1 class="title">{Texts.Title}</h1>
 
     <input
         class="text-input"
@@ -55,7 +52,7 @@
     >
     <div class="continue-buttons">
         <button type="submit" class="blue-button">Sign In</button>
-        <a href="/auth/signup">Sign Up</a>
+        <a href="/auth/signup" class="text-button">Sign Up</a>
     </div>
     <!-- <a class="sign" href="/register">Register</a> -->
     <p class="feedback" class:red={error} class:lime={!error}>

@@ -1,30 +1,12 @@
-import fs from "fs";
-import { usernamePath, itemPath } from "../../path";
+import { supabase } from "./supabase";
 
-export const getUsernames = () => {
-    return JSON.parse(fs.readFileSync(usernamePath).toString());
+export const isUsernameAvailable = async (name: string): Promise<boolean> => {
+    const { data: users } = await supabase.from("users").select("username");
+
+    return users?.find?.((v) => v.username == name) != undefined;
 };
+export const isEmailAvailable = async (email: string): Promise<boolean> => {
+    const { data: emails } = await supabase.from("users").select("username");
 
-export const setUsernames = (names: object) => {
-    fs.writeFileSync(usernamePath, JSON.stringify(names, null, 4));
-};
-
-export const setUsername = (id: string, name: String) => {
-    const usernames = getUsernames();
-    usernames[id] = name;
-    setUsernames(usernames);
-};
-
-export const getItemList = () => {
-    return JSON.parse(fs.readFileSync(itemPath).toString());
-};
-
-export interface Item {
-    name: string;
-    power: number;
-    cost: number;
-    rating: number;
-}
-export const getItem = (id: string): Item => {
-    return getItemList()[id] ?? null;
+    return emails?.find?.((e) => e.username == email) != undefined;
 };

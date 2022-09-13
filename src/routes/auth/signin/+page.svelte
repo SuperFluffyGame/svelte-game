@@ -7,10 +7,9 @@
     let feedback: null | string = null;
     let email = "";
     let password = "";
-    let username = "";
     let showPassword = false;
 
-    const signup = async () => {
+    const signin = async () => {
         const res = await supabase.auth.signInWithPassword({
             email,
             password,
@@ -28,7 +27,7 @@
     };
 </script>
 
-<form class="signin" on:submit|preventDefault={signup}>
+<form class="signin" on:submit|preventDefault={signin}>
     <h1 class="title">{title}</h1>
 
     <input

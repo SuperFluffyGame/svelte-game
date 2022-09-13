@@ -36,14 +36,14 @@
                 username,
             },
         ]);
-        const loginRes = await supabase.auth.signInWithPassword({
-            email,
-            password,
-        });
-        if (loginRes.error) {
-            console.error(loginRes);
-            return;
-        }
+        // const loginRes = await supabase.auth.signInWithPassword({
+        //     email,
+        //     password,
+        // });
+        // if (loginRes.error) {
+        //     console.error(loginRes);
+        //     return;
+        // }
         error = false;
         feedback = Registered;
     };

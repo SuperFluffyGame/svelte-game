@@ -77,7 +77,7 @@
     }
 
     .page-tab-container {
-        height: 2.25rem;
+        min-height: 2rem;
         border-bottom: 0.2rem solid var(--b9);
         background-color: var(--bl2);
         display: flex;
@@ -100,8 +100,7 @@
         align-items: center;
         justify-content: center;
 
-        font-size: 1.15rem;
-        padding-block: 0.25rem;
+        font-size: 1rem;
         padding-inline: 1.5rem;
         border-left: 0.2rem solid var(--b5);
 

@@ -1,6 +1,6 @@
-import type { PageServerLoad } from "./$types";
-import { error, redirect } from "@sveltejs/kit";
+import type { PageServerLoad } from "../../.svelte-kit/types/src/routes/$types";
+import { redirect } from "@sveltejs/kit";
 
 export const load: PageServerLoad = () => {
-    throw redirect(300, "/auth/signin");
+    throw redirect(303, "/auth/signin");
 };

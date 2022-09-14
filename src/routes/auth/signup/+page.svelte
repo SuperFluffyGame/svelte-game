@@ -6,11 +6,10 @@
     let feedback: string | null = null;
     let email = "";
     let password = "";
-    let username = "";
     let showPassword = false;
 
     const _signup = async () => {
-        const res = await signup(email, password, username);
+        const res = await signup(email, password);
         if (res.error) {
             error = true;
             feedback = res.error;
@@ -27,7 +26,7 @@
 
 <form class="signin" on:submit|preventDefault={_signup}>
     <h1 class="title">{Texts.Title}</h1>
-    <input
+    <!-- <input
         class="text-input"
         type="username"
         autocomplete="username"
@@ -36,7 +35,7 @@
         minlength={5}
         maxlength={16}
         bind:value={username}
-    />
+    /> -->
     <input
         class="text-input"
         type="email"

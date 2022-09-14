@@ -1,4 +1,3 @@
-import { getItem } from "$lib/data";
 import type { RequestHandler } from "@sveltejs/kit";
 
 export const GET: RequestHandler = (e) => {
@@ -11,7 +10,6 @@ export const GET: RequestHandler = (e) => {
             })
         );
     }
-    let item = getItem(id);
 
-    return new Response(JSON.stringify(item));
+    // return new Response(JSON.stringify(item));
 };

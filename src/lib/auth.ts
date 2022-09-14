@@ -1,6 +1,7 @@
 import { supabase } from "./supabase";
-import { isEmailAvailable, isUsernameAvailable } from "./data";
+import { isEmailAvailable } from "./data";
 import * as Texts from "./texts";
+import type { IsAvailableResult } from "./api";
 
 export interface SignupResult {
     error: string | null;
@@ -8,16 +9,13 @@ export interface SignupResult {
 export const signup = async (
     email: string,
     password: string,
-    username: string
 ): Promise<SignupResult> => {
-    if (!isEmailAvailable(email)) {
+    const emailAvailRes = (await (
+        await fetch(`/api/users/emailavailable?email=${email}`)
+    ).json()) as IsAvailableResult;
+    if (!emailAvailRes.data) {
         return {
             error: Texts.EmailUnavailable,
-        };
-    }
-    if (!isUsernameAvailable(username)) {
-        return {
-            error: Texts.UsernameUnavailable,
         };
     }
 
@@ -30,17 +28,6 @@ export const signup = async (
         return {
             error: signupRes.error.message,
         };
-    }
-
-    const insertRes = await supabase.from("users").insert([
-        {
-            username,
-            email,
-        },
-    ]);
-
-    if (insertRes.error) {
-        throw "Unexpected db insert fail.";
     }
 
     return {

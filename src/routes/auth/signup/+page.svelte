@@ -87,18 +87,6 @@
     .signin > *:not(:first-child) {
         margin-top: 1rem;
     }
-    .text-input {
-        appearance: none;
-        outline: none;
-        border: none;
-        color: var(--accent-color);
-        font-size: 1.25rem;
-        background-color: var(--bl5);
-        height: 2rem;
-        width: 25rem;
-        padding-block: 0.25rem;
-        padding-inline: 0.5rem;
-    }
 
     .red {
         color: red;

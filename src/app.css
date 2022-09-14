@@ -105,3 +105,16 @@ a:hover:not(.text-button) {
 .blue-button:active {
     background-color: var(--b8);
 }
+
+.text-input {
+    appearance: none;
+    outline: none;
+    border: none;
+    color: var(--accent-color);
+    font-size: 1.25rem;
+    background-color: var(--bl5);
+    height: 2rem;
+    width: 25rem;
+    padding-block: 0.25rem;
+    padding-inline: 0.5rem;
+}

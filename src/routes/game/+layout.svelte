@@ -20,7 +20,12 @@
             .from("users")
             .select("username")
             .single();
-        username.set(usernameSqlRes.data?.username ?? "Error");
+
+        if (!usernameSqlRes.data?.username) {
+            goto("/auth/create-character");
+            return;
+        }
+        username.set(usernameSqlRes.data?.username);
     });
 </script>
 

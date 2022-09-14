@@ -105,7 +105,6 @@
         border-left: 0.2rem solid var(--b5);
 
         flex: 1 1 0;
-        flex-grow: 1;
         min-width: 6rem;
     }
 

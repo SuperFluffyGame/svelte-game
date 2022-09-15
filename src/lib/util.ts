@@ -6,3 +6,4 @@ const formatter = new Intl.NumberFormat("en", {
 export const numberToString = (value: number): string => {
     return formatter.format(value);
 };
+

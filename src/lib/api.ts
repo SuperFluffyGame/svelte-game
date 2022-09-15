@@ -11,7 +11,7 @@ export const apiResult = (json: object) => {
 };
 
 export type CreateUserResult = ApiResult<{}>;
-// export type IsAvailableResult = ApiResult<boolean>;
+export type IsAvailableResult = ApiResult<boolean>;
 export type GetStringResult = ApiResult<string>;
 
 export const jwtFetch = async (url: string): Promise<Response> => {

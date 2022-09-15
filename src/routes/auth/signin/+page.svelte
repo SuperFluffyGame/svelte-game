@@ -2,7 +2,6 @@
     import * as Texts from "$lib/texts";
     import { goto } from "$app/navigation";
     import { signin } from "$lib/auth";
-    import { jwtFetch } from "$lib/api";
 
     let error = false;
     let feedback: null | string = null;

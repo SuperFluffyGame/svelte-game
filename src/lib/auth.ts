@@ -9,14 +9,6 @@ export const signup = async (
     email: string,
     password: string
 ): Promise<SignupResult> => {
-    const emailAvailRes = (await (
-        await fetch(`/api/users/emailavailable?email=${email}`)
-    ).json()) as IsAvailableResult;
-    if (!emailAvailRes.data) {
-        return {
-            error: Texts.EmailUnavailable,
-        };
-    }
 
     const signupRes = await supabase.auth.signUp({
         email,

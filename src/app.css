@@ -118,3 +118,10 @@ a:hover:not(.text-button) {
     padding-block: 0.25rem;
     padding-inline: 0.5rem;
 }
+
+.red {
+    color: red;
+}
+.lime {
+    color: lime;
+}

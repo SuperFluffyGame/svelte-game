@@ -88,12 +88,6 @@
         margin-top: 1rem;
     }
 
-    .red {
-        color: red;
-    }
-    .lime {
-        color: lime;
-    }
     .feedback {
         position: absolute;
         font-family: monospace;

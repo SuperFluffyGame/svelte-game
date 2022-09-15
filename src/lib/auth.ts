@@ -1,5 +1,4 @@
 import { supabase } from "./supabase";
-import { isEmailAvailable } from "./data";
 import * as Texts from "./texts";
 import type { IsAvailableResult } from "./api";
 
@@ -8,7 +7,7 @@ export interface SignupResult {
 }
 export const signup = async (
     email: string,
-    password: string,
+    password: string
 ): Promise<SignupResult> => {
     const emailAvailRes = (await (
         await fetch(`/api/users/emailavailable?email=${email}`)

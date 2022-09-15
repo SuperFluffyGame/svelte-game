@@ -6,9 +6,11 @@
     import * as Texts from "$lib/texts";
     import { supabase } from "$lib/supabase";
     import { goto } from "$app/navigation";
-    import { username } from "$lib/stores";
+    import { jwtFetch, type GetStringResult, type Icon } from "$lib/api";
 
     $: pageName = $page.url.pathname.slice(6);
+    let username = "Loading...";
+    let iconSrc = "";
 
     onMount(async () => {
         const userRes = await supabase.auth.getUser();
@@ -16,16 +18,33 @@
             goto("/auth/signin");
             return;
         }
-        const usernameSqlRes = await supabase
-            .from("users")
-            .select("username")
-            .single();
-
-        if (!usernameSqlRes.data?.username) {
-            goto("/auth/create-character");
-            return;
+        const usernameRes = (await (
+            await jwtFetch("/api/users/username")
+        ).json()) as GetStringResult;
+        if (usernameRes.error || !usernameRes.data) {
+            goto("/create-character");
+        } else {
+            username = usernameRes.data!;
         }
-        username.set(usernameSqlRes.data?.username);
+
+        const iconRes = (await (
+            await jwtFetch("/api/users/account-icon")
+        ).json()) as GetStringResult;
+        if (iconRes.error || !iconRes.data) {
+            goto("/create-character");
+        } else {
+            const icon: Icon = iconRes.data as any;
+            if (icon.type == "custom") {
+                iconSrc = icon.data;
+            } else {
+                switch (icon.data) {
+                    case "account":
+                    default: {
+                        iconSrc = accountSvg;
+                    }
+                }
+            }
+        }
     });
 </script>
 
@@ -33,9 +52,9 @@
     <div class="topbar">
         <h1 class="title">{Texts.Title}</h1>
         <div class="account">
-            <p class="name">{$username}</p>
+            <p class="name">{username}</p>
             <a href="/game/account">
-                <img src={accountSvg} alt="account icon" class="account-icon" />
+                <img src={iconSrc} alt="" class="account-icon" />
             </a>
         </div>
     </div>

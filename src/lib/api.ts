@@ -6,8 +6,13 @@ export interface ApiResult<Data> {
     data: Data | null;
 }
 
+export const apiResult = (json: object) => {
+    return new Response(JSON.stringify(json));
+};
+
 export type CreateUserResult = ApiResult<{}>;
-export type IsAvailableResult = ApiResult<boolean>;
+// export type IsAvailableResult = ApiResult<boolean>;
+export type GetStringResult = ApiResult<string>;
 
 export const jwtFetch = async (url: string): Promise<Response> => {
     const session = (await supabase.auth.getSession()).data.session;
@@ -22,4 +27,23 @@ export const jwtFetch = async (url: string): Promise<Response> => {
     });
 
     return res;
+};
+
+export interface Icon {
+    type: "builtin" | "custom";
+    data: string;
+}
+export const createCharacter = async (
+    name: string,
+    icon: Icon
+): Promise<CreateUserResult> => {
+    const res = await (
+        await jwtFetch(
+            `/api/users/create-character?name=${name}&icon=${encodeURIComponent(
+                JSON.stringify(icon)
+            )}`
+        )
+    ).json();
+
+    return res as CreateUserResult;
 };

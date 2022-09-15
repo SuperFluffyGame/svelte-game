@@ -4,11 +4,6 @@
     import { onMount } from "svelte";
 
     let text = "";
-
-    onMount(async () => {
-        const res = await jwtFetch("/api/users/createuser?name=hello&email=a");
-        text = await res.text();
-    });
 </script>
 
 <div class="container">

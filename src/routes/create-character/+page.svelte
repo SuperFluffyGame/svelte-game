@@ -12,6 +12,15 @@
             goto("/auth/signin");
             return;
         }
+
+        const usernameRes = await supabase
+            .from("users_pub")
+            .select("username")
+            .single();
+
+        if (!usernameRes.error) {
+            goto("/game");
+        }
     });
     let error = false;
     let feedback: string | null = null;
@@ -71,7 +80,7 @@
                     name="icon"
                     class="select"
                     required
-                    on:change={e => {
+                    on:change={(e) => {
                         selectedIcon = "account";
                     }}
                     selected
@@ -84,7 +93,7 @@
                     type="radio"
                     name="icon"
                     class="select"
-                    on:change={e => {
+                    on:change={(e) => {
                         selectedIcon = "custom";
                     }}
                 />

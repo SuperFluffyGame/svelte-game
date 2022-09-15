@@ -25,7 +25,7 @@ const isUsernameValid = (n: string | null): { error: string | null } => {
     };
 };
 
-export const GET: RequestHandler = async e => {
+export const GET: RequestHandler = async (e) => {
     const jwt = e.request.headers.get("X-supabase-jwt");
     const name = e.url.searchParams.get("name");
 
@@ -81,9 +81,9 @@ export const GET: RequestHandler = async e => {
 
     // write the user data.
     const dbUserWriteRes = await supabaseAdmin.from("users").insert({
-        uid: userRes.data.user.id,
         username: name,
         icon: icon,
+        uid: userRes.data.user.id,
     });
     if (dbUserWriteRes.error) {
         return apiResult({

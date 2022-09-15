@@ -6,7 +6,7 @@
     import * as Texts from "$lib/texts";
     import { supabase } from "$lib/supabase";
     import { goto } from "$app/navigation";
-    import { jwtFetch, type GetStringResult, type Icon } from "$lib/api";
+    import type { Icon } from "$lib/api";
 
     $: pageName = $page.url.pathname.slice(6);
     let username = "Loading...";
@@ -18,22 +18,21 @@
             goto("/auth/signin");
             return;
         }
-        const usernameRes = (await (
-            await jwtFetch("/api/users/username")
-        ).json()) as GetStringResult;
+        const usernameRes = await supabase
+            .from("users")
+            .select("username")
+            .single();
         if (usernameRes.error || !usernameRes.data) {
             goto("/create-character");
         } else {
-            username = usernameRes.data!;
+            username = usernameRes.data.username;
         }
 
-        const iconRes = (await (
-            await jwtFetch("/api/users/account-icon")
-        ).json()) as GetStringResult;
+        const iconRes = await supabase.from("users").select("icon").single();
         if (iconRes.error || !iconRes.data) {
             goto("/create-character");
         } else {
-            const icon: Icon = iconRes.data as any;
+            const icon: Icon = iconRes.data.icon as any;
             if (icon.type == "custom") {
                 iconSrc = icon.data;
             } else {
@@ -84,7 +83,7 @@
             <a href="/game/factions">FACTIONS</a>
         </div>
         <div class="page-tab" class:selected={pageName == "leaderboards"}>
-            <a href="/game/leaderboards"> LEADERBOARDS</a>
+            <a href="/game/leaderboards">LEADERBOARDS</a>
         </div>
     </div>
 </div>

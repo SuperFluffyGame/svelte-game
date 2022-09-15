@@ -1,18 +1,18 @@
 <script lang="ts">
     import { onMount } from "svelte";
-    import { jwtFetch, type GetStringResult } from "$lib/api";
-    import { goto } from "$app/navigation";
+    import { supabase } from "$lib/supabase";
 
     let username = "Loading...";
 
     onMount(async () => {
-        const usernameRes = (await (
-            await jwtFetch("/api/users/username")
-        ).json()) as GetStringResult;
+        const usernameRes = await supabase
+            .from("users")
+            .select("username")
+            .single();
         if (usernameRes.error || !usernameRes.data) {
-            username = "Character Not Created";
+            username = "Character not Created.";
         } else {
-            username = usernameRes.data!;
+            username = usernameRes.data.username;
         }
     });
 </script>

@@ -1,27 +1,70 @@
 <script lang="ts">
-    import Item from "$lib/components/Item.svelte";
     import LargeItem from "$lib/components/LargeItem.svelte";
+    import { supabase } from "$lib/supabase";
     import { onMount } from "svelte";
     import { each } from "svelte/internal";
+    import type { EquippedItems, Item } from "$lib/inventory/set.server";
+    import EmptyLargeItem from "$lib/components/EmptyLargeItem.svelte";
+
+    let invenLoaded = false;
+    let invenError: string | null = null;
 
     let name = "Loading...";
-    onMount(() => {
+    let equipped: EquippedItems | null = null;
+    onMount(async () => {
         name = localStorage.getItem("USERNAME") ?? "Something went wrong";
+
+        const equippedItemsRes = await supabase
+            .from("inventory")
+            .select("equipped")
+            .single();
+
+        if (equippedItemsRes.error) {
+            invenError = equippedItemsRes.error.message;
+        }
+        equipped = equippedItemsRes.data?.equipped as EquippedItems;
+        invenLoaded = true;
     });
 </script>
 
 <div class="container">
     <div class="equipped">
-        {#each Array(8) as _, i}
+        {#if equipped?.helmet.id && invenLoaded}
             <LargeItem
-                name="Wood"
-                power={2}
-                count={2_500_000}
-                rating={4}
-                cost={1}
-                icon=""
+                name={equipped?.helmet.id}
+                count={equipped?.helmet.count}
+                power={0}
+                cost={0}
+                rating={1}
+                icon="n"
             />
-        {/each}
+        {:else}
+            <EmptyLargeItem icon="" name="Helmet" />
+        {/if}
+        {#if equipped?.chestplate.id && invenLoaded}
+            <LargeItem
+                name={equipped?.chestplate.id}
+                count={equipped?.chestplate.count}
+                power={0}
+                cost={0}
+                rating={1}
+                icon="n"
+            />
+        {:else}
+            <EmptyLargeItem icon="" name="Chestplate" />
+        {/if}
+        {#if equipped?.leggings.id && invenLoaded}
+            <LargeItem
+                name={equipped?.leggings.id}
+                count={equipped?.leggings.count}
+                power={0}
+                cost={0}
+                rating={1}
+                icon="n"
+            />
+        {:else}
+            <EmptyLargeItem icon="" name="Leggings" />
+        {/if}
     </div>
     <div class="divider" />
     <div class="categories">
@@ -72,7 +115,7 @@
     }
     .equipped {
         padding: 1rem;
-        width: fit-content;
+        width: 18rem;
         height: fit-content;
         display: grid;
         grid-template-columns: auto auto;

@@ -1,6 +1,7 @@
 import type { RequestHandler } from "@sveltejs/kit";
 import { apiResult, type CreateUserResult, type Icon } from "$lib/api";
 import { supabase, supabaseAdmin } from "$lib/supabase";
+import { initInventory } from "$lib/inventory/set.server";
 
 const isUsernameValid = (n: string | null): { error: string | null } => {
     if (n == null) {
@@ -41,6 +42,7 @@ export const GET: RequestHandler = async (e) => {
             error: `Invalid JWT.`,
         } as CreateUserResult);
     }
+    const uid = userRes.data.user.id;
 
     // check username validity
     let v = isUsernameValid(name);
@@ -67,7 +69,10 @@ export const GET: RequestHandler = async (e) => {
     }
 
     // make sure username isnt already in use
-    const dbRes = await supabaseAdmin.from("users").select("username");
+    const dbRes = await supabaseAdmin
+        .from("users")
+        .select("username")
+        .filter("username", "eq", name);
     if (dbRes.error) {
         return apiResult({
             error: `DB read fail: ${dbRes.error.message}`,
@@ -82,14 +87,23 @@ export const GET: RequestHandler = async (e) => {
     // write the user data.
     const dbUserWriteRes = await supabaseAdmin.from("users").insert({
         username: name,
-        icon: icon,
-        uid: userRes.data.user.id,
+        icon,
+        uid,
     });
     if (dbUserWriteRes.error) {
         return apiResult({
             error: `DB write fail: ${dbUserWriteRes.error.message}`,
         } as CreateUserResult);
     }
+
+    const initInvRes = await initInventory(uid);
+    if (initInvRes.error) {
+        await supabaseAdmin.from("users").delete().filter("uid", "eq", uid);
+        return apiResult({
+            error: `Failed to create inventory: ${initInvRes.error}`,
+        } as CreateUserResult);
+    }
+
     return apiResult({
         status: "Successfully created character.",
     } as CreateUserResult);

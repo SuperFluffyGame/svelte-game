@@ -1,6 +1,5 @@
 <script lang="ts">
     import { onMount } from "svelte";
-    import { username } from "$lib/stores";
 </script>
 
 <div class="container">

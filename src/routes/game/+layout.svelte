@@ -102,7 +102,7 @@
     .page-tab-container {
         min-height: 2rem;
         border-bottom: 0.2rem solid var(--b9);
-        background-color: var(--bl2);
+        background-color: var(--bl3);
         display: flex;
         align-items: stretch;
         overflow-x: auto;

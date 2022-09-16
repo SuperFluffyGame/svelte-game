@@ -61,13 +61,10 @@
 </form>
 
 <style>
-    h1 {
-        margin: 0;
-    }
     .signin {
         position: relative;
-        width: max(20rem, 50vw);
-        height: max(25rem, 50vh);
+        width: 30rem;
+        height: 30rem;
         background-color: var(--bl1);
         border-radius: 0.5rem;
         display: flex;

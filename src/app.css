@@ -27,7 +27,7 @@
     --bl7: #444648;
 
     scrollbar-width: thin;
-    font-size: max(1vh, 1vw, 0.75rem);
+    font-size: calc(min(1vh, 1vw) * 2);
 }
 
 body {

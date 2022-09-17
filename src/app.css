@@ -26,8 +26,11 @@
     --bl6: #393b3d;
     --bl7: #444648;
 
+    --zoom: 1;
+
     scrollbar-width: thin;
-    font-size: calc(min(1vh, 1vw) * 2);
+    /* font-size: calc(min(1vh, 1vw) * 2 * var(--zoom)); */
+    font-size: 14px;
 }
 
 body {
@@ -52,9 +55,9 @@ a {
     color: var(--accent-color);
     text-decoration: none;
     transition: color 75ms linear;
-}
-a:hover:not(.text-button) {
-    color: var(--accent-color-hover);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .text-button {
@@ -111,12 +114,14 @@ a:hover:not(.text-button) {
     outline: none;
     border: none;
     color: var(--accent-color);
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     background-color: var(--bl5);
     height: 2rem;
     width: 25rem;
-    padding-block: 0.25rem;
-    padding-inline: 0.5rem;
+    padding-block: 0.3rem;
+    padding-inline: 1rem;
+
+    border-radius: 0.25rem;
 }
 
 .red {

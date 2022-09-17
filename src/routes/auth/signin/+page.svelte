@@ -63,7 +63,7 @@
 <style>
     .signin {
         position: relative;
-        width: 30rem;
+        width: 40rem;
         height: 30rem;
         background-color: var(--bl1);
         border-radius: 0.5rem;

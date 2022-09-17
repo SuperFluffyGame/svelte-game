@@ -7,14 +7,15 @@
 
     onMount(async () => {
         const userRes = await supabase.auth.getUser();
-        
+
         if (!userRes.error) {
             goto("/game");
         }
     });
 </script>
 
-<div class="container">
+<div class="container" id="particles">
+    <script src="particles.js" defer></script>
     <slot />
 </div>
 

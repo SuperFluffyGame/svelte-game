@@ -3,7 +3,7 @@
     import { supabase } from "$lib/supabase";
     import { onMount } from "svelte";
     import { each } from "svelte/internal";
-    import type { EquippedItems, Item } from "$lib/inventory/set.server";
+    import type { EquippedItems, Item } from "$lib/game/inventory/initSetup";
     import EmptyLargeItem from "$lib/components/EmptyLargeItem.svelte";
 
     let invenLoaded = false;

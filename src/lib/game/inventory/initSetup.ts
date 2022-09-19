@@ -1,4 +1,4 @@
-import type { InitInventoryResult } from "$lib/api";
+import type { InitResult } from "$lib/api";
 import { supabaseAdmin } from "$lib/supabase";
 
 export interface Item {
@@ -31,9 +31,7 @@ const initEquippedItems = (): EquippedItems => {
     };
 };
 
-export const initInventory = async (
-    id: string
-): Promise<InitInventoryResult> => {
+export const initInventory = async (id: string): Promise<InitResult> => {
     const equipped = initEquippedItems();
 
     const dbRes = await supabaseAdmin.from("inventory").insert({

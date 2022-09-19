@@ -1,6 +1,6 @@
 import type { RequestHandler } from "@sveltejs/kit";
 
-export const GET: RequestHandler = (e) => {
+export const GET: RequestHandler = e => {
     let id = e.url.searchParams.get("item");
 
     if (id == undefined) {
@@ -10,6 +10,8 @@ export const GET: RequestHandler = (e) => {
             })
         );
     }
+
+    throw "TODO!";
 
     // return new Response(JSON.stringify(item));
 };

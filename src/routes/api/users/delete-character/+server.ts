@@ -3,29 +3,6 @@ import { apiResult, type CreateUserResult, type Icon } from "$lib/api";
 import { supabase, supabaseAdmin } from "$lib/supabase";
 import { initGame } from "$lib/game/gameSetup";
 
-const isUsernameValid = (n: string | null): { error: string | null } => {
-    if (n == null) {
-        return {
-            error: "Username cannot be null.",
-        };
-    }
-    if (n.length < 5 || n.length > 15) {
-        return {
-            error: "Username must be between 5 and 15 characters.",
-        };
-    }
-
-    const match = /[A-Za-z_][A-Za-z0-9_]*/.test(n);
-    if (!match) {
-        return {
-            error: "Username can only be letters, numbers, or an underscore, but not start with a number",
-        };
-    }
-    return {
-        error: null,
-    };
-};
-
 export const GET: RequestHandler = async e => {
     const jwt = e.request.headers.get("X-supabase-jwt");
     const name = e.url.searchParams.get("name");

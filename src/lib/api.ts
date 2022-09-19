@@ -13,7 +13,7 @@ export const apiResult = (json: object) => {
 export type CreateUserResult = ApiResult<{}>;
 export type IsAvailableResult = ApiResult<boolean>;
 export type GetStringResult = ApiResult<string>;
-export type InitInventoryResult = ApiResult;
+export type InitResult = ApiResult;
 
 export const jwtFetch = async (url: string): Promise<Response> => {
     const session = (await supabase.auth.getSession()).data.session;
